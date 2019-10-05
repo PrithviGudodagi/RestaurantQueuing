@@ -49,5 +49,5 @@ app.post("/book", function(req, res){
 
 
 app.listen(3000, function(){
-    console.log("Server started");
+    console.log("Server started hello boi");
 });
