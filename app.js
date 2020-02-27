@@ -2,7 +2,7 @@ var express         = require("express"),
     app             = express(),
     bodyParser      = require("body-parser"),
     mongoose        = require("mongoose");
-    
+
 //APP config
 mongoose.connect("mongodb://localhost/restro",{useNewUrlParser:true, useUnifiedTopology:true});
 app.set("view engine","ejs");
@@ -27,8 +27,8 @@ app.get("/book", function(req, res){
         if(!err){
                 res.render("index",{persons: persons});
         }
-       
-    })
+
+    });
 });
 
 //New route
@@ -41,8 +41,26 @@ app.post("/book", function(req, res){
         if(!err){
             res.redirect("/book");
         }
-    })
-})
+    });
+});
+
+
+app.get("/admin",function(req,res){
+  res.render("admin");
+});
+
+app.post("/admin",function(req,res){
+    if(req.body.username == "admin" && req.body.password == "admin"){
+      res.redirect("/admindashboard");
+    }
+    else{
+      res.render("admin");
+    }
+});
+
+app.get("/admindashboard",function(req,res){
+      res.render("admindashboard");
+});
 
 
 
